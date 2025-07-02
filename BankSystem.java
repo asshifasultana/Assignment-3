@@ -39,7 +39,7 @@ public class BankSystem {
             }
 
             System.out.println("======BANK MENU======");
-            System.out.println("1.Create new account \n 2.Deposit \n 3.Withdraw \n 4.Transfer \n 5.Exit");
+            System.out.println("1.Create new account \n 2.Deposit \n 3.Withdraw \n 4.Transfer \n 5.Check Details \n 6.Exit");
             System.out.println("Enter your choice:");
             int choice2 = sc.nextInt();
 
@@ -260,7 +260,44 @@ public class BankSystem {
                 destination.deposit(amount);
                 System.out.println("Successfully deposited tk " + amount + " to " + destination.getName());
 
-            } else if (choice2 == 5) {
+            }
+            else if(choice2==5)
+            {
+                System.out.println("1.Current Account \n 2.Savings Account \n 3.Fixed-Deposit Account");
+                System.out.println("Enter your choice");
+                int choice = sc.nextInt();
+
+                System.out.println("Enter Account ID:");
+                sc.nextLine();
+                String accountID = sc.nextLine();
+
+                switch (choice) {
+                    case 1:
+                        for (CurrentAccount a : currentAccount) {
+                            if (a.getID().equals(accountID)) {
+                                System.out.println(a.toString());
+                            }
+                        }
+                        break;
+                    case 2:
+                        for (SavingsAccount a : savingsAccount) {
+                            if (a.getID().equals(accountID)) {
+                                System.out.println(a.toString());
+                            }
+                        }
+                        break;
+                    case 3:
+                        for (FixedDeposit a : fixedDeposit) {
+                            if (a.getID().equals(accountID)) {
+                                System.out.println(a.toString());
+                            }
+                        }
+                        break;
+                        default:
+                            System.out.println("Account not found");
+                }
+            }
+            else if (choice2 == 6) {
                 System.exit(0);
             }
         }
